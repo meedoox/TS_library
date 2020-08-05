@@ -16,8 +16,14 @@
         <div class="float-right">
             <form>
                 <select name='sorter' onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-                    <option {% if sort is defined and sort in "DESC" %}selected{% endif %} value="{{ path('books', {sort: "DESC"}) }}">Posledně přečtené</option>
-                    <option {% if sort is defined and sort in "ASC" %}selected{% endif %} value="{{ path('books', {sort: "ASC"}) }}">Prvně přečtené</option>
+                    <option {% if sort is defined and sort in "DESC" %}selected{% endif %} {% if app.request.uri|last in "/" %}
+                            value="{{ path('books', {sort: "DESC"}) }}"{% else %}value="{{ app.request.uri ~ '&sort=DESC' }}"{% endif %}">
+                        Posledně přečtené
+                    </option>
+                    <option {% if sort is defined and sort in "ASC" %}selected{% endif %} {% if app.request.uri|last in "/" %}
+                            value="{{ path('books', {sort: "ASC"}) }}"{% else %}value="{{ app.request.uri ~ '&sort=ASC' }}"{% endif %}">
+                        Prvně přečtené
+                    </option>
                 </select>
                 <noscript><input type="submit" value="Submit"></noscript>
             </form>
