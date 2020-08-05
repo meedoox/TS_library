@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Books{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>{{ book.name }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h5>Autor:</h5>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px">
+            <div class="col">
+                <h5 style="margin-bottom: 0px">Stručný popis:</h5>
+                <p>{{ book.description }}</p>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px">
+            <div class="col">
+                <h5 style="margin-bottom: 0px">Informace:</h5>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+            <div class="col">
+                <strong>Žánry:</strong>
+            </div>
+            <div class="col">
+                <strong>Rok vydání:</strong> {{ book.year }}
+            </div>
+            <div class="col">
+                <strong>Počet stran:</strong> {{ book.numberOfPages }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

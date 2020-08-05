@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookController extends AbstractController
 {
     /**
-     * @Route("/", name="book")
+     * @Route("/", name="books")
      */
     public function index()
     {
@@ -21,4 +21,20 @@ class BookController extends AbstractController
             'books' => $books
         ]);
     }
+
+
+    /**
+     * @Route("/book/{id}", name="show_book")
+     */
+    public function showBook(int $id)
+    {
+        $book = $this->getDoctrine()
+            ->getRepository(Book::class)
+            ->find($id);
+
+        return $this->render('book/show.html.twig', [
+            'book' => $book
+        ]);
+    }
+
 }

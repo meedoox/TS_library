@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AuthorController extends AbstractController
 {
     /**
-     * @Route("/author", name="author")
+     * @Route("/author", name="authors")
      */
     public function index()
     {

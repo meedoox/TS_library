@@ -8,7 +8,7 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Název knihy</th>
+                <th scope="col" style="width: 200px">Název knihy</th>
                 <th scope="col">Popis</th>
             </tr>
         </thead>
@@ -16,7 +16,7 @@
             {% for book in books %}
                 <tr>
                     <th scope="row">{{ book.id }}</th>
-                    <td>{{ book.name }}</td>
+                    <td><a href="{{ path('show_book', {id: book.id}) }}">{{ book.name }}</a></td>
                     <td>{{ book.description }}</td>
                 </tr>
             {% endfor %}
