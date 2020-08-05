@@ -6,9 +6,15 @@ use App\Repository\GenreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=GenreRepository::class)
+ *
+ * @UniqueEntity(
+ *     fields={"name"},
+ *     message="Tento žánr již existuje"
+ * )
  */
 class Genre
 {
@@ -21,6 +27,7 @@ class Genre
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $name;
 

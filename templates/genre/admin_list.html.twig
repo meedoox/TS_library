@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administrace - žánry{% endblock %}
+
+{% block body %}
+
+    <input type="button" onclick="location.href='{{ path('add_genre') }}';" value="Přidat žánr" />
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Název žánru</th>
+            <th scope="col">Počet knih</th>
+            <th scope="col">Akce</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for genre in genres %}
+            <tr>
+                <td>{{ genre.name }}</td>
+                <td>({{ genre.books|length }})</td>
+                <td><a href="{{ path('remove_genre', {id: genre.id}) }}">Vymazat</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

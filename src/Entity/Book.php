@@ -34,6 +34,7 @@ class Book
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Positive
+     * @Assert\NotBlank
      */
     private $year;
 
@@ -41,6 +42,7 @@ class Book
      * @ORM\Column(type="integer", nullable=true)
      *
      * @Assert\Positive
+     * @Assert\NotBlank
      */
     private $numberOfPages;
 
