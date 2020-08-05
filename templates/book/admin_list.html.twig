@@ -20,7 +20,7 @@
         <tbody>
             {% for book in books %}
                 <tr>
-                    <td><a href="{{ path('show_book', {id: book.id}) }}">{{ book.name }}</a></td>
+                    <td><a href="{{ path('edit_book', {id: book.id}) }}">{{ book.name }}</a></td>
                     <td>{{ book.author }}</td>
                     <td>
                         {% if book.description|length > 250 %}

@@ -14,13 +14,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item {% if 'books' in active %}active{% endif %}">
+                    <li class="nav-item {% if active is defined and 'books' in active %}active{% endif %}">
                         <a class="nav-link" href="{% if '/admin' in app.request.pathinfo %}{{ path('admin_books') }}{% else %}{{ path('books') }}{% endif %}">Knihy</a>
                     </li>
-                    <li class="nav-item {% if 'authors' in active %}active{% endif %}">
+                    <li class="nav-item {% if active is defined and 'authors' in active %}active{% endif %}">
                         <a class="nav-link" href="{% if '/admin' in app.request.pathinfo %}{{ path('admin_authors') }}{% else %}{{ path('authors') }}{% endif %}">Autoři</a>
                     </li>
-                    <li class="nav-item {% if 'genres' in active %}active{% endif %}">
+                    <li class="nav-item {% if active is defined and 'genres' in active %}active{% endif %}">
                         <a class="nav-link" href="{% if '/admin' in app.request.pathinfo %}{{ path('admin_genres') }}{% else %}{{ path('genres') }}{% endif %}">Žánry</a>
                     </li>
                 </ul>

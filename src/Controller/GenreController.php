@@ -88,4 +88,32 @@ class GenreController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+
+    /**
+     * @Route("/admin/edit/genre/{id}", name="edit_genre")
+     */
+    public function editGenre(Request $request, int $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $genre = $entityManager->getRepository(Genre::class)->find($id);
+
+        $form = $this->createForm(AddGenreType::class, $genre);
+
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $entityManager->persist($genre);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_genres');
+        }
+
+
+        return $this->render('genre/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }

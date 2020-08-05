@@ -18,7 +18,7 @@
         <tbody>
         {% for author in authors %}
             <tr>
-                <td>{{ author.lastname }}</td>
+                <td><a href="{{ path('edit_author', {id: author.id}) }}">{{ author.lastname }}</a></td>
                 <td>({{ author.books|length }})</td>
                 <td><a href="{{ path('remove_author', {id: author.id}) }}">Vymazat</a></td>
             </tr>

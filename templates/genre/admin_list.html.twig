@@ -18,7 +18,7 @@
         <tbody>
         {% for genre in genres %}
             <tr>
-                <td>{{ genre.name }}</td>
+                <td><a href="{{ path('edit_genre', {id: genre.id}) }}">{{ genre.name }}</a></td>
                 <td>({{ genre.books|length }})</td>
                 <td><a href="{{ path('remove_genre', {id: genre.id}) }}">Vymazat</a></td>
             </tr>
