@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Přidat autora{% endblock %}
+{% block title %}{% if author is defined %}Upravit autora - {{ author.lastname }}{% else %}Přidat autora{% endif %}{% endblock %}
 
 {% block body %}
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Přidat žánr{% endblock %}
+{% block title %}{% if genre is defined %}Upravit žánr - {{ genre.name }}{% else %}Přidat žánr{% endif %}{% endblock %}
 
 {% block body %}
 

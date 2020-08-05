@@ -128,6 +128,7 @@ class BookController extends AbstractController
 
         return $this->render('book/add.html.twig', [
             'form' => $form->createView(),
+            'book' => $book
         ]);
     }
 

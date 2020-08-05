@@ -114,6 +114,7 @@ class GenreController extends AbstractController
 
         return $this->render('genre/add.html.twig', [
             'form' => $form->createView(),
+            'genre' => $genre
         ]);
     }
 }

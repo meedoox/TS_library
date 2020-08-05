@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Přidat knihu{% endblock %}
+{% block title %}{% if book is defined %}Upravit knihu - {{ book.name }}{% else %}Přidat knihu{% endif %}{% endblock %}
 
 {% block body %}
 
