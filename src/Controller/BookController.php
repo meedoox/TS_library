@@ -17,6 +17,8 @@ class BookController extends AbstractController
             ->getRepository(Book::class)
             ->findAll();
 
+        usort($books, function($a, $b) {return $a->getCreatedAt() > $b->getCreatedAt();});
+
         return $this->render('book/index.html.twig', [
             'books' => $books
         ]);
