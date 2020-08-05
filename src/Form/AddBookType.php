@@ -25,10 +25,9 @@ class AddBookType extends AbstractType
                     'min' => -5000,
                     'max' => date("Y")
                 ],
-                'label' => 'Rok vydání',
-                'data' => 2020]
+                'label' => 'Rok vydání']
             )
-            ->add('numberOfPages', IntegerType::class, ['label' => 'Počet stran', 'data' => 100])
+            ->add('numberOfPages', IntegerType::class, ['label' => 'Počet stran'])
             ->add('author', null,['label' => 'Autor'])
             ->add('genres', null,['label' => 'Žánry'])
             ->add('submit', SubmitType::class, ['label' => 'Uložit knihu'])
