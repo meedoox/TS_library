@@ -18,6 +18,7 @@ class BookController extends AbstractController
         $filter = $request->query->get('filter');
         $authorId = $request->query->get('author');
         $genreId = $request->query->get('genre');
+        $sort = $request->query->get('sort');
 
         if($filter == "true" && $authorId) {
             $books = $this->getDoctrine()
@@ -35,11 +36,15 @@ class BookController extends AbstractController
                 ->findAll();
         }
 
-        usort($books, function($a, $b) {return $a->getCreatedAt() > $b->getCreatedAt();});
+        if($sort == "ASC")
+            usort($books, function($a, $b) {return $a->getCreatedAt() > $b->getCreatedAt();});
+        else
+            usort($books, function($a, $b) {return $a->getCreatedAt() < $b->getCreatedAt();});
 
         return $this->render('book/index.html.twig', [
             'books' => $books,
-            'active' => 'books'
+            'active' => 'books',
+            'sort' => $sort
         ]);
     }
 

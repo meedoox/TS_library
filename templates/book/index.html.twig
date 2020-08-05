@@ -4,6 +4,14 @@
 
 {% block body %}
 
+    <form>
+        <select name='sorter' onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+            <option {% if sort is defined and sort in "DESC" %}selected{% endif %} value="{{ path('books', {sort: "DESC"}) }}">Posledně přečtené</option>
+            <option {% if sort is defined and sort in "ASC" %}selected{% endif %} value="{{ path('books', {sort: "ASC"}) }}">Prvně přečtené</option>
+        </select>
+        <noscript><input type="submit" value="Submit"></noscript>
+    </form>
+
     {% if books is empty %}
         <p>Knihy nebyly nalezeny</p>
     {% else %}
