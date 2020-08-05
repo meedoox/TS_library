@@ -7,34 +7,31 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg {% if '/admin' in app.request.pathinfo %}navbar-dark bg-dark{% else %}navbar-light bg-light{% endif %}">
             <a class="navbar-brand" href="{{ path('books') }}"><strong>Čtenářský deník</strong></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('books') }}">Knihy</a>
+                    <li class="nav-item {% if 'books' in active %}active{% endif %}">
+                        <a class="nav-link" href="{% if '/admin' in app.request.pathinfo %}{{ path('admin_books') }}{% else %}{{ path('books') }}{% endif %}">Knihy</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('authors') }}">Autoři</a>
+                    <li class="nav-item {% if 'authors' in active %}active{% endif %}">
+                        <a class="nav-link" href="{% if '/admin' in app.request.pathinfo %}{{ path('admin_authors') }}{% else %}{{ path('authors') }}{% endif %}">Autoři</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('genres') }}">Žánry</a>
+                    <li class="nav-item {% if 'genres' in active %}active{% endif %}">
+                        <a class="nav-link" href="{% if '/admin' in app.request.pathinfo %}{{ path('admin_genres') }}{% else %}{{ path('genres') }}{% endif %}">Žánry</a>
                     </li>
-                    <!--li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown link
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li-->
                 </ul>
             </div>
+            <ul class="nav navbar-nav navbar-right">
+                {% if '/admin' in app.request.pathinfo %}
+                    <li><a href="{{ path('books') }}"><span class="glyphicon glyphicon-log-in"></span> Odhlásit</a></li>
+                {% else %}
+                    <li><a href="{{ path('admin_books') }}"><span class="glyphicon glyphicon-log-in"></span> Administrace</a></li>
+                {% endif %}
+            </ul>
         </nav>
 
         <div class="container">

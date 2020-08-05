@@ -22,7 +22,8 @@ class BookController extends AbstractController
         usort($books, function($a, $b) {return $a->getCreatedAt() > $b->getCreatedAt();});
 
         return $this->render('book/index.html.twig', [
-            'books' => $books
+            'books' => $books,
+            'active' => 'books'
         ]);
     }
 
@@ -54,7 +55,8 @@ class BookController extends AbstractController
         usort($books, function($a, $b) {return $a->getCreatedAt() > $b->getCreatedAt();});
 
         return $this->render('book/admin_list.html.twig', [
-            'books' => $books
+            'books' => $books,
+            'active' => 'books'
         ]);
     }
 

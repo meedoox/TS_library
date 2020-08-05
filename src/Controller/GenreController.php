@@ -23,7 +23,8 @@ class GenreController extends AbstractController
             );
 
         return $this->render('genre/index.html.twig', [
-            'genres' => $genres
+            'genres' => $genres,
+            'active' => 'genres'
         ]);
     }
 
@@ -41,7 +42,8 @@ class GenreController extends AbstractController
             );
 
         return $this->render('genre/admin_list.html.twig', [
-            'genres' => $genres
+            'genres' => $genres,
+            'active' => 'genres'
         ]);
     }
 

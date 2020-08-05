@@ -20,7 +20,8 @@ class AuthorController extends AbstractController
             ->findBy([], ['lastname' => 'ASC']);
 
         return $this->render('author/index.html.twig', [
-            'authors' => $authors
+            'authors' => $authors,
+            'active' => 'authors'
         ]);
     }
 
@@ -35,7 +36,8 @@ class AuthorController extends AbstractController
             ->findBy([], ['lastname' => 'ASC']);
 
         return $this->render('author/admin_list.html.twig', [
-            'authors' => $authors
+            'authors' => $authors,
+            'active' => 'authors'
         ]);
     }
 
