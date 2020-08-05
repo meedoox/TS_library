@@ -17,11 +17,18 @@ class BookController extends AbstractController
     {
         $filter = $request->query->get('filter');
         $authorId = $request->query->get('author');
+        $genreId = $request->query->get('genre');
 
         if($filter == "true" && $authorId) {
             $books = $this->getDoctrine()
                 ->getRepository(Book::class)
                 ->findByAuthor($authorId);
+
+        } elseif ($filter == "true" && $genreId) {
+            $books = $this->getDoctrine()
+                ->getRepository(Book::class)
+                ->findByGenre($genreId);
+
         } else {
             $books = $this->getDoctrine()
                 ->getRepository(Book::class)

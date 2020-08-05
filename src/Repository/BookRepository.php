@@ -30,6 +30,19 @@ class BookRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+
+    public function findByGenre($id)
+    {
+        return $this->createQueryBuilder('b')
+            ->select('b, genres')
+            ->innerJoin('b.genres', 'genres')
+            ->where('genres.id IN (:id)')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Book[] Returns an array of Book objects
     //  */
