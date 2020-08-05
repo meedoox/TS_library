@@ -17,7 +17,18 @@ class AuthorController extends AbstractController
     {
         $authors = $this->getDoctrine()
             ->getRepository(Author::class)
-            ->findBy([], ['lastname' => 'ASC']);
+            ->findAll();
+
+        foreach ($authors as $author) {
+            $name = explode(" ", $author->getLastname());
+            $surname = $name[count($name)-1];
+            unset($name[count($name)-1]);
+            $newName = $surname . ", " . implode(" ", $name);
+
+            $author->setLastname($newName);
+        }
+
+        usort($authors, function($a, $b) {return $a->getLastname() > $b->getLastname();});
 
         return $this->render('author/index.html.twig', [
             'authors' => $authors,
@@ -33,7 +44,18 @@ class AuthorController extends AbstractController
     {
         $authors = $this->getDoctrine()
             ->getRepository(Author::class)
-            ->findBy([], ['lastname' => 'ASC']);
+            ->findAll();
+
+        foreach ($authors as $author) {
+            $name = explode(" ", $author->getLastname());
+            $surname = $name[count($name)-1];
+            unset($name[count($name)-1]);
+            $newName = $surname . ", " . implode(" ", $name);
+
+            $author->setLastname($newName);
+        }
+
+        usort($authors, function($a, $b) {return $a->getLastname() > $b->getLastname();});
 
         return $this->render('author/admin_list.html.twig', [
             'authors' => $authors,

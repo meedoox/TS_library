@@ -17,10 +17,9 @@ class GenreController extends AbstractController
     {
         $genres = $this->getDoctrine()
             ->getRepository(Genre::class)
-            ->findBy(
-                [],
-                ['name' => 'ASC']
-            );
+            ->findAll();
+
+        usort($genres, function($a, $b) {return count($a->getBooks()) < count($b->getBooks());});
 
         return $this->render('genre/index.html.twig', [
             'genres' => $genres,
@@ -36,10 +35,9 @@ class GenreController extends AbstractController
     {
         $genres = $this->getDoctrine()
             ->getRepository(Genre::class)
-            ->findBy(
-                [],
-                ['name' => 'ASC']
-            );
+            ->findAll();
+
+        usort($genres, function($a, $b) {return count($a->getBooks()) < count($b->getBooks());});
 
         return $this->render('genre/admin_list.html.twig', [
             'genres' => $genres,
