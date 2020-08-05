@@ -8,6 +8,7 @@
         <thead>
             <tr>
                 <th scope="col" style="width: 200px">Název knihy</th>
+                <th scope="col" style="width: 200px">Autor</th>
                 <th scope="col">Popis</th>
             </tr>
         </thead>
@@ -15,9 +16,10 @@
             {% for book in books %}
                 <tr>
                     <td><a href="{{ path('show_book', {id: book.id}) }}">{{ book.name }}</a></td>
+                    <td>{{ book.author }}</td>
                     <td>
                         {% if book.description|length > 250 %}
-                            {{ book.description|slice(1, 250) }}...
+                            {{ book.description|slice(0, 250) }}...
                         {% else %}
                             {{ book.description }}
                         {% endif %}
