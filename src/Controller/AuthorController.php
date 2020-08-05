@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Author;
+use App\Form\AddAuthorType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AuthorController extends AbstractController
@@ -19,6 +21,64 @@ class AuthorController extends AbstractController
 
         return $this->render('author/index.html.twig', [
             'authors' => $authors
+        ]);
+    }
+
+
+    /**
+     * @Route("/admin/author", name="admin_authors")
+     */
+    public function adminBookList()
+    {
+        $authors = $this->getDoctrine()
+            ->getRepository(Author::class)
+            ->findBy([], ['lastname' => 'ASC']);
+
+        return $this->render('author/admin_list.html.twig', [
+            'authors' => $authors
+        ]);
+    }
+
+
+    /**
+     * @Route("/remove/author/{id}", name="remove_author")
+     */
+    public function removeBook(int $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $author = $entityManager->getRepository(Author::class)->find($id);
+        if($author) {
+            $entityManager->remove($author);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_authors');
+    }
+
+
+    /**
+     * @Route("/admin/add/author", name="add_author")
+     */
+    public function addBook(Request $request)
+    {
+        $author = new Author();
+
+        $form = $this->createForm(AddAuthorType::class, $author);
+
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $entityManager->persist($author);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_authors');
+        }
+
+
+        return $this->render('author/add.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }

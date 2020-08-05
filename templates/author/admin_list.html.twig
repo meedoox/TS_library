@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Knihy{% endblock %}
+
+{% block body %}
+
+    <input type="button" onclick="location.href='{{ path('add_author') }}';" value="Přidat autora" />
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Název autora</th>
+            <th scope="col">Počet knih</th>
+            <th scope="col">Akce</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.lastname }}</td>
+                <td>({{ author.books|length }})</td>
+                <td><a href="{{ path('remove_author', {id: author.id}) }}">Vymazat</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
