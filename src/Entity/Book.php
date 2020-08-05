@@ -22,6 +22,13 @@ class Book
 
     /**
      * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 100,
+     *      minMessage = "Název nesmí být prázdný",
+     *      maxMessage = "Název může být maximálně {{ limit }} znaků dlouhý",
+     *      allowEmptyString = false
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -33,7 +40,6 @@ class Book
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Positive
      * @Assert\NotBlank
      */
     private $year;
