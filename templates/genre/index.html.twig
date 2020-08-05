@@ -12,12 +12,12 @@
         </tr>
         </thead>
         <tbody>
-        {% for genre in genres %}
-            <tr>
-                <td>{{ genre.name }}</td>
-                <td>(8)</td>
-            </tr>
-        {% endfor %}
+            {% for genre in genres %}
+                <tr>
+                    <td>{{ genre.name }}</td>
+                    <td>({{ genre.books|length }})</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 

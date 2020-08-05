@@ -12,12 +12,12 @@
         </tr>
         </thead>
         <tbody>
-        {% for author in authors %}
-            <tr>
-                <td>{{ author.lastname }}</td>
-                <td>(8)</td>
-            </tr>
-        {% endfor %}
+            {% for author in authors %}
+                <tr>
+                    <td>{{ author.lastname }}</td>
+                    <td>({{ author.books|length }})</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 

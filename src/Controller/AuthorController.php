@@ -15,7 +15,7 @@ class AuthorController extends AbstractController
     {
         $authors = $this->getDoctrine()
             ->getRepository(Author::class)
-            ->findAll();
+            ->findBy([], ['lastname' => 'ASC']);
 
         return $this->render('author/index.html.twig', [
             'authors' => $authors
