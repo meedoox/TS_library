@@ -4,29 +4,33 @@
 
 {% block body %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col" style="width: 200px">Název knihy</th>
-                <th scope="col" style="width: 200px">Autor</th>
-                <th scope="col">Popis</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for book in books %}
+    {% if books is empty %}
+        <p>Knihy nebyly nalezeny</p>
+    {% else %}
+        <table class="table">
+            <thead>
                 <tr>
-                    <td><a href="{{ path('show_book', {id: book.id}) }}">{{ book.name }}</a></td>
-                    <td>{{ book.author }}</td>
-                    <td>
-                        {% if book.description|length > 250 %}
-                            {{ book.description|slice(0, 250) }}...
-                        {% else %}
-                            {{ book.description }}
-                        {% endif %}
-                    </td>
+                    <th scope="col" style="width: 200px">Název knihy</th>
+                    <th scope="col" style="width: 200px">Autor</th>
+                    <th scope="col">Popis</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td><a href="{{ path('show_book', {id: book.id}) }}">{{ book.name }}</a></td>
+                        <td>{{ book.author }}</td>
+                        <td>
+                            {% if book.description|length > 250 %}
+                                {{ book.description|slice(0, 250) }}...
+                            {% else %}
+                                {{ book.description }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 
 {% endblock %}

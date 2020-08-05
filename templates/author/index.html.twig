@@ -14,7 +14,7 @@
         <tbody>
             {% for author in authors %}
                 <tr>
-                    <td>{{ author.lastname }}</td>
+                    <td><a href="{{ path('books', {filter: "true", author:author.id}) }}">{{ author.lastname }}</td>
                     <td>({{ author.books|length }})</td>
                 </tr>
             {% endfor %}

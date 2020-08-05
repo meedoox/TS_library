@@ -13,11 +13,20 @@ class BookController extends AbstractController
     /**
      * @Route("/", name="books")
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = $this->getDoctrine()
-            ->getRepository(Book::class)
-            ->findAll();
+        $filter = $request->query->get('filter');
+        $authorId = $request->query->get('author');
+
+        if($filter == "true" && $authorId) {
+            $books = $this->getDoctrine()
+                ->getRepository(Book::class)
+                ->findByAuthor($authorId);
+        } else {
+            $books = $this->getDoctrine()
+                ->getRepository(Book::class)
+                ->findAll();
+        }
 
         usort($books, function($a, $b) {return $a->getCreatedAt() > $b->getCreatedAt();});
 
