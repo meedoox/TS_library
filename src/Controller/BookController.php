@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Form\AddBookType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BookController extends AbstractController
@@ -70,6 +72,33 @@ class BookController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_books');
+    }
+
+    /**
+     * @Route("/admin/add/book", name="add_book")
+     */
+    public function addBook(Request $request)
+    {
+        $book = new Book();
+
+        $form = $this->createForm(AddBookType::class, $book);
+
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $book->setCreatedAt(new \DateTime());
+            $entityManager->persist($book);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_books');
+        }
+
+
+        return $this->render('book/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
 }

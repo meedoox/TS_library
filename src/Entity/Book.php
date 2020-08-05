@@ -6,6 +6,7 @@ use App\Repository\BookRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
@@ -20,6 +21,7 @@ class Book
     private $id;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -31,11 +33,14 @@ class Book
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Positive
      */
     private $year;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     *
+     * @Assert\Positive
      */
     private $numberOfPages;
 
@@ -45,12 +50,14 @@ class Book
     private $createdAt;
 
     /**
+     * @Assert\NotBlank
      * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
     /**
+     * @Assert\NotBlank
      * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="books")
      */
     private $genres;
