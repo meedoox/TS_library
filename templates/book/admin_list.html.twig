@@ -4,7 +4,9 @@
 
 {% block body %}
 
-    <input type="button" onclick="location.href='{{ path('add_book') }}';" value="Přidat knihu" />
+    <div class="float-right">
+        <input type="button" onclick="location.href='{{ path('add_book') }}';" value="Přidat knihu" />
+    </div>
 
     <table class="table">
         <thead>

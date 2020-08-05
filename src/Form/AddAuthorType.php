@@ -15,7 +15,7 @@ class AddAuthorType extends AbstractType
     {
         $builder
             ->add('lastname', TextType::class, ['label' => 'Jméno a Příjmení'])
-            ->add('submit', SubmitType::class, ['label' => 'Přidat autora'])
+            ->add('submit', SubmitType::class, ['label' => 'Uložit autora'])
         ;
     }
 

@@ -31,7 +31,7 @@ class AddBookType extends AbstractType
             ->add('numberOfPages', IntegerType::class, ['label' => 'Počet stran', 'data' => 100])
             ->add('author', null,['label' => 'Autor'])
             ->add('genres', null,['label' => 'Žánry'])
-            ->add('submit', SubmitType::class, ['label' => 'Přidat knihu'])
+            ->add('submit', SubmitType::class, ['label' => 'Uložit knihu'])
         ;
     }
 

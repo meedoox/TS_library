@@ -4,17 +4,25 @@
 
 {% block body %}
 
-    <form>
-        <select name='sorter' onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-            <option {% if sort is defined and sort in "DESC" %}selected{% endif %} value="{{ path('books', {sort: "DESC"}) }}">Posledně přečtené</option>
-            <option {% if sort is defined and sort in "ASC" %}selected{% endif %} value="{{ path('books', {sort: "ASC"}) }}">Prvně přečtené</option>
-        </select>
-        <noscript><input type="submit" value="Submit"></noscript>
-    </form>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Můj seznam knih</h1>
+        </div>
+    </div>
 
     {% if books is empty %}
         <p>Knihy nebyly nalezeny</p>
     {% else %}
+        <div class="float-right">
+            <form>
+                <select name='sorter' onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                    <option {% if sort is defined and sort in "DESC" %}selected{% endif %} value="{{ path('books', {sort: "DESC"}) }}">Posledně přečtené</option>
+                    <option {% if sort is defined and sort in "ASC" %}selected{% endif %} value="{{ path('books', {sort: "ASC"}) }}">Prvně přečtené</option>
+                </select>
+                <noscript><input type="submit" value="Submit"></noscript>
+            </form>
+        </div>
+
         <table class="table">
             <thead>
                 <tr>

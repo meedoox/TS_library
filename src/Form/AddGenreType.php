@@ -15,7 +15,7 @@ class AddGenreType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, ['label' => 'Název žánru'])
-            ->add('submit', SubmitType::class, ['label' => 'Přidat žánr'])
+            ->add('submit', SubmitType::class, ['label' => 'Uložit žánr'])
         ;
     }
 
