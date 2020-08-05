@@ -39,4 +39,37 @@ class BookController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/admin/book", name="admin_books")
+     */
+    public function adminBookList()
+    {
+        $books = $this->getDoctrine()
+            ->getRepository(Book::class)
+            ->findAll();
+
+        usort($books, function($a, $b) {return $a->getCreatedAt() > $b->getCreatedAt();});
+
+        return $this->render('book/admin_list.html.twig', [
+            'books' => $books
+        ]);
+    }
+
+
+    /**
+     * @Route("/remove/book/{id}", name="remove_book")
+     */
+    public function removeBook(int $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $book = $entityManager->getRepository(Book::class)->find($id);
+        if($book) {
+            $entityManager->remove($book);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_books');
+    }
+
 }
